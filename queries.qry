@@ -1,0 +1,12 @@
+query selectDonationByOwner {
+  description: "Select all Donations based on their owner"
+  statement:
+      SELECT org.donation.network.Donation 
+          WHERE (donator == _$donator)
+}
+query selectDonationsByCampaign {
+    description: "Select donations in campaign"
+    statement: 
+      SELECT org.donation.network.Donation 
+          WHERE (campaign == _$campaign)
+}
