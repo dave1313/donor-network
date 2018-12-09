@@ -11,6 +11,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
+<!-- add search box to search for donation-->
+<div class="search">
+  <h4 class="heading" style ="font-family: 'Source Sans Pro Light', sans-serif; ">Search here for your donation: <input type="text" name="search-box-donation" placeholder="Search" id="txtempsearch" [(ngModel)] = "AssetFind" /></h4>
+</div>
 <div class="modal fade" id="addAssetModal" tabindex="-1" role="dialog" aria-labelledby="addAssetModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -258,7 +262,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let asset of allAssets">
+                <!--DG add filter -->
+                <tr *ngFor="let asset of allAssets | FilterAsset : AssetFind ">
 
             
                 <td class="asset-properties">{{asset.donationId}}</td>
@@ -273,7 +278,7 @@
             
                 <td class="asset-properties">{{asset.aidItem}}</td>
             
-            <td>
+            <!-- <td>
               <button (click)="getForm(asset.donationId);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateAssetModal">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   width="12.8px" height="12.8px" viewBox="0 0 30.7 30.7" style="enable-background:new 0 0 30.7 30.7;" xml:space="preserve">
@@ -298,7 +303,7 @@
                </svg>
               </button>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>

@@ -34,6 +34,10 @@ import { BuyAidItemComponent } from './BuyAidItem/BuyAidItem.component';
 import { SetupEnvComponent } from './SetupEnv/SetupEnv.component';
 import { InfoComponent } from './info/info.component';
 
+// DG Import Filter Function
+import {FilterAssetPipe} from './Donation/FilterAsset.pipe';
+
+
   @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +51,9 @@ import { InfoComponent } from './info/info.component';
     ChangeCampaignComponent,
     BuyAidItemComponent,
     SetupEnvComponent,
+   // DG Import Filter Function
+    FilterAssetPipe,
+    
     InfoComponent
   ],
   imports: [
