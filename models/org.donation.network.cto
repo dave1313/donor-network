@@ -30,8 +30,6 @@ abstract participant ChainUser identified by email{
 
 participant Donator extends ChainUser {
   o String donatorID
-//  o String firstName
-//  o String lastName
 }
 participant CharityOrg extends ChainUser{
   o String charityID
