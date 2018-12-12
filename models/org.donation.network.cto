@@ -59,8 +59,8 @@ transaction ChangeDonationValue {
   o Double newValue
 }
 transaction ChangeCampaign{
-  -->Donation asset
-  o Campaign newCampaign
+  --> Donation asset
+  --> Campaign newCampaign
 }
 
 transaction BuyAidItem{

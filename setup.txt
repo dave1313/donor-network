@@ -8,8 +8,9 @@ composer card import --file networkadmin.card
 composer network ping --card admin@donor-network
 composer-rest-server -c admin@donor-network -n never -w true
 
-in BNA folde
+in BNA folder
 yo hyperledger-composer
+in dist/donor-network
 npm start
 
 http://localhost:4200
@@ -21,4 +22,16 @@ Commands for Queries
 
 
 
+Creting New Donation
+DON003
+DONATOR001   resource:org.donation.network.Donator#donator@gmail.com
+CHAR002  alone@gmail.com  resource:org.donation.network.CharityOrg#oxfam@gmail.com
+resource:org.donation.network.Campaign#CAM002
 
+Creting New Donation
+DON00#
+donor email     donator@gmail.com
+Charity email  alone@gmail.com
+Campaign Email
+
+resource:org.donation.network.Campaign#CAM001
