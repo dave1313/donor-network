@@ -12,27 +12,17 @@
  * limitations under the License.
  */
 
-/**
- * Sample access control list.
- */
-rule EverybodyCanReadEverything {
-    description: "Allow all participants read access to all resources"
-    participant: "org.donation.network.ChainUser"
-    operation: READ
-    resource: "org.donation.network.*"
-    action: ALLOW
-}
 
-rule EverybodyCanSubmitTransactions {
-    description: "Allow all participants to submit transactions"
-    participant: "org.donation.network.ChainUser"
-    operation: CREATE
-    resource: "org.donation.network.ChangeDonationValue"
-    action: ALLOW
-}
 rule onlyCharityCanChangeCampaign {
     description: "Allow all participants to submit transactions"
-    participant: "org.donation.network.ChainUser"
+    participant: "org.donation.network.CharityOrg"
+    operation: CREATE
+    resource: "org.donation.network.ChangeCampaign"
+    action: ALLOW
+}
+rule onlyCharityCanBuyAidItem {
+    description: "Allow all participants to submit transactions"
+    participant: "org.donation.network.CharityOrg"
     operation: CREATE
     resource: "org.donation.network.ChangeCampaign"
     action: ALLOW
@@ -45,6 +35,21 @@ rule OwnerHasFullAccessToTheirAssets {
     resource(r): "org.donation.network.Donation"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
+}
+rule DonatorsSeeOwnHistoryOnly {
+  description: "Donators should be able to see the history of their own Donations only"
+  participant(t): "org.donation.network.Donator"
+  operation: READ
+  resource(v): "org.hyperledger.composer.system.HistorianRecord"
+  condition: (v.participantInvoking.getIdentifier() != t.getIdentifier())
+  action: DENY
+}
+rule RegulatorSeeAll {
+  description: "Regulators can see everything"
+  participant: "org.donation.network.Regulator"
+  operation: READ
+  resource: "org.donation.network.*"
+  action: ALLOW
 }
 
 rule SystemACL {
@@ -70,3 +75,4 @@ rule NetworkAdminSystem {
     resource: "org.hyperledger.composer.system.**"
     action: ALLOW
 }
+
