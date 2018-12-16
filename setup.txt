@@ -1,37 +1,54 @@
-composer archive create --sourceType dir --sourceName . -a ./dist/donor-network.bna
+1. Hyperledger Composer Install
 
+curl -O https://hyperledger.github.io/composer/v0.19/prereqs-ubuntu.sh
+chmod u+x prereqs-ubuntu.sh
+./prereqs-ubuntu.sh
+
+npm install -g composer-cli@0.20
+npm install -g composer-rest-server@0.20
+npm install -g generator-hyperledger-composer@0.20
+npm install -g yo
+
+
+2. Hyperledger Fabric Install
+
+mkdir ~/fabric-dev-servers && cd ~/fabric-dev-servers
+curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
+tar -xvf fabric-dev-servers.tar.gz
+cd ~/fabric-dev-servers
+export FABRIC_VERSION=hlfv12
+./downloadFabric.sh
+
+cd ~/fabric-dev-servers
+export FABRIC_VERSION=hlfv12
+./downloadFabric.sh
+
+cd ~/fabric-dev-servers
+export FABRIC_VERSION=hlfv12
+./startFabric.sh
+./createPeerAdminCard.sh
+
+3. Prototype Install
+
+cd donor-network
+composer archive create --sourceType dir --sourceName . -a ./dist/donor-network.bna 
 composer network install --card PeerAdmin@hlfv1 --archiveFile dist/donor-network.bna
  
-composer network start --networkName donor-network --networkVersion 0.0.5 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+
+composer network start --networkName donor-network --networkVersion 0.0.6 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+
 composer card import --file networkadmin.card
 
+
 composer network ping --card admin@donor-network
+
 composer-rest-server -c admin@donor-network -n never -w true
 
-in BNA folder
-yo hyperledger-composer
-in dist/donor-network
+4. Start Application
+cd dist
 npm start
 
-http://localhost:4200
-
-
-
-Commands for Queries
 
 
 
 
-Creting New Donation
-DON003
-DONATOR001   resource:org.donation.network.Donator#donator@gmail.com
-CHAR002  alone@gmail.com  resource:org.donation.network.CharityOrg#oxfam@gmail.com
-resource:org.donation.network.Campaign#CAM002
-
-Creting New Donation
-DON00#
-donor email     donator@gmail.com
-Charity email  alone@gmail.com
-Campaign Email
-
-resource:org.donation.network.Campaign#CAM001
