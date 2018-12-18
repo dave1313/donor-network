@@ -1,3 +1,3 @@
 # donor-network
 
-test
+Application to demonstrate Donor-Network

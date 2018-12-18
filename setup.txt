@@ -31,7 +31,8 @@ export FABRIC_VERSION=hlfv12
 3. Prototype Install
 
 cd donor-network
-composer archive create --sourceType dir --sourceName . -a ./dist/donor-network.bna 
+\\This command only if complining BNA. Already created in source
+\\composer archive create --sourceType dir --sourceName . -a ./dist/donor-network.bna 
 composer network install --card PeerAdmin@hlfv1 --archiveFile dist/donor-network.bna
  
 
@@ -47,6 +48,8 @@ composer-rest-server -c admin@donor-network -n never -w true
 4. Start Application
 cd dist
 npm start
+
+
 
 
 
